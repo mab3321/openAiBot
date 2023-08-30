@@ -19,11 +19,21 @@ def create_prompt():
 @app.route('/read', methods=['GET'])
 def read_prompt():
     index = int(request.args.get('index', None))
-    print(index)
     prompts = bot.read_prompt(index)
     if prompts is None:
         return jsonify({"error": "Invalid index"}), 400
     return jsonify({"prompts": prompts}), 200
+
+
+@app.route('/get_response', methods=['GET'])
+def get_response():
+    index = int(request.args.get('index', None))
+    print(index)
+    prompts = bot.read_prompt(index)
+    if prompts is None:
+        return jsonify({"error": "Invalid index"}), 400
+    response = bot.get_response(prompts)
+    return jsonify({"response": response}), 200
 
 
 @app.route('/update', methods=['PUT'])

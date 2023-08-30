@@ -11,12 +11,15 @@ class ChatGptBotAPI:
         openai.api_key = openai_api_key
         self.prompts = []
 
-    def get_response(self, index):
-        prompt = self.prompts[index]
-        response_from_api = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo", messages=[{"role": "user", "content": prompt}])
-        response_to_send = response_from_api.choices[0]['message']['content']
-        return response_to_send
+    def get_response(self, prompt):
+
+        try:
+            response_from_api = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo", messages=[{"role": "user", "content": prompt}])
+            response_to_send = response_from_api.choices[0]['message']['content']
+            return response_to_send
+        except Exception as e:
+            return "Encountered Error."
 
     def create_prompt(self, prompt):
         self.prompts.append(prompt)
