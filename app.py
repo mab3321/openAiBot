@@ -46,8 +46,10 @@ def get_response():
     if prompts is None:
         return jsonify({"error": "Invalid index"}), 400
     response = bot.get_response(prompts)
-    return jsonify({"response": response}), 200
-
+    if response != "Encountered Error.":
+        return jsonify({"response": response}), 200
+    else:
+        return jsonify({"Error": response}), 400
 # Endpoint to update a prompt
 
 
@@ -59,7 +61,7 @@ def update_prompt():
     try:
         bot.update_prompt(index, new_prompt)
         return jsonify({"message": "Prompt updated successfully"}), 200
-    except IndexError:
+    except Exception as e:
         return jsonify({"error": "Invalid index"}), 400
 
 # Endpoint to delete a prompt
@@ -78,4 +80,6 @@ def delete_prompt():
 
 # Run the app if this is the main script
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = config.get('port')
+    print(port)
+    app.run(host="0.0.0.0", port=port)

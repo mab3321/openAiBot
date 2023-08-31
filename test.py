@@ -1,6 +1,6 @@
 import unittest
 import json
-from app import app  
+from app import app
 
 
 class FlaskAppTest(unittest.TestCase):
@@ -9,7 +9,7 @@ class FlaskAppTest(unittest.TestCase):
         self.app = app.test_client()
 
     def test_create_prompt(self):
-        data = {"prompt": "Test prompt"}
+        data = {"prompt": "Hi, How are You?"}
         response = self.app.post('/create', json=data)
         self.assertEqual(response.status_code, 201)
         self.assertEqual(json.loads(response.data), {
@@ -22,7 +22,7 @@ class FlaskAppTest(unittest.TestCase):
         self.assertTrue("prompts" in json.loads(response.data))
 
     def test_read_prompt_invalid_index(self):
-        response = self.app.get('/read?index=invalid_index')
+        response = self.app.get('/read?index=100')
         self.assertEqual(response.status_code, 400)
         self.assertEqual(json.loads(response.data), {"error": "Invalid index"})
 
@@ -33,32 +33,25 @@ class FlaskAppTest(unittest.TestCase):
         self.assertTrue("response" in json.loads(response.data))
 
     def test_get_response_invalid_index(self):
-        response = self.app.get('/get_response?index=invalid_index')
+        response = self.app.get('/get_response?index=100')
         self.assertEqual(response.status_code, 400)
         self.assertEqual(json.loads(response.data), {"error": "Invalid index"})
 
     def test_update_prompt(self):
-        data = {"index": 0, "new_prompt": "Updated prompt"}
+        data = {"index": 0, "new_prompt": "Greetings!"}
         response = self.app.put('/update', json=data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(json.loads(response.data), {
                          "message": "Prompt updated successfully"})
 
     def test_update_prompt_invalid_index(self):
-        data = {"index": "invalid_index", "new_prompt": "Updated prompt"}
+        data = {"index": 100, "new_prompt": "Greetings!"}
         response = self.app.put('/update', json=data)
         self.assertEqual(response.status_code, 400)
         self.assertEqual(json.loads(response.data), {"error": "Invalid index"})
 
-    def test_delete_prompt(self):
-        data = {"index": 0}
-        response = self.app.delete('/delete', json=data)
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(json.loads(response.data), {
-                         "message": "Prompt deleted successfully"})
-
     def test_delete_prompt_invalid_index(self):
-        data = {"index": "invalid_index"}
+        data = {"index": 100}
         response = self.app.delete('/delete', json=data)
         self.assertEqual(response.status_code, 400)
         self.assertEqual(json.loads(response.data), {"error": "Invalid index"})

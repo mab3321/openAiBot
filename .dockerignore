@@ -1,0 +1,12 @@
+# Files and directories to exclude from the Docker image
+__pycache__
+venv
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.git
+*.dockerignore
+*.vscode
