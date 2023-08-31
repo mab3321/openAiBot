@@ -13,8 +13,8 @@ This is a Flask application that provides an API for interacting with the ChatGp
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/your-chatgptbotapi-flask-app.git
-   cd your-chatgptbotapi-flask-app```
+         git clone https://github.com/yourusername/your-chatgptbotapi-flask-app.git
+         cd your-chatgptbotapi-flask-app```
 2. Install dependencies using pip:
      ```bash
      pip install -r requirements.txt```
