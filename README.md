@@ -36,9 +36,18 @@ To run the unit tests, you can use the following command:
 You can also run the application using Docker for easy containerization:
 
   ## Build the Docker image:
-      ```
-            docker build -t chatgptbotapi-flask-app .```
+
+    docker build -t chatgptbotapi-flask-app .
+
   ## Run the Docker container:
-      ```
-	       docker run -p 5000:5000 chatgptbotapi-flask-app```
+
+    docker run -p 5000:5000 chatgptbotapi-flask-app
+
   Access the endpoints as usual.
+
+
+
+
+
+
+.
