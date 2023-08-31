@@ -18,7 +18,7 @@ This is a Flask application that provides an API for interacting with the ChatGp
 2. Install dependencies using pip:
      ```bash
      pip install -r requirements.txt```
-Set up your .env File:
+3. Set up your .env File:
     Rename the .env.example file to **.env** and replace **OPENAI_API_KEY** with your actual OpenAI API key.
 Run the Flask application:
   ```bash
