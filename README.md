@@ -12,8 +12,9 @@ This is a Flask application that provides an API for interacting with the ChatGp
 ## Installation
 
 1. Clone the repository:
-   git clone https://github.com/mab3321/openAiBot.git
-   cd openAiBot
+   ```bash
+   git clone https://github.com/yourusername/your-chatgptbotapi-flask-app.git
+   cd your-chatgptbotapi-flask-app```
 2. Install dependencies using pip:
     pip install -r requirements.txt
 Set up your .env File:
